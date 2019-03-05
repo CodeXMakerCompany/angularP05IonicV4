@@ -22,7 +22,6 @@ export class Tab1Page {
 //async transforma a una promesa
   async agregarLista() {
 
-    //this.router.navigateByUrl('tabs/tab1/agregar');
     const alert = await this.alertCtrl.create({
       header: 'Nueva lista',
       inputs: [
@@ -49,8 +48,10 @@ export class Tab1Page {
                 return;
             }
 
-            this.deseosService.crearLista( data.titulo );
+            const listaId  = this.deseosService.crearLista( data.titulo );
             //Crear lista
+
+            this.router.navigateByUrl(`tabs/tab1/agregar/${ listaId }`);
 
           }
         }
@@ -59,8 +60,8 @@ export class Tab1Page {
 
     alert.present();
 
-
-
   }
+
+
 
 }
